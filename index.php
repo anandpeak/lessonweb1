@@ -15,5 +15,16 @@
               echo "Өнөөдөр бол " . date("Y/m/d");
              ?></span>
     <p>
+      <!-- 
+        Alias
+        http://localhost:8080/sisi
+
+        Redirect
+        http://localhost:8080/aanaa
+
+        VirtualHost
+        Virtual.mn
+        http://phpmyadmin.local:8080
+       -->
   </body>
 </html>
