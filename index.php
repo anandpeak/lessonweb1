@@ -25,6 +25,10 @@
         VirtualHost
         Virtual.mn
         http://phpmyadmin.local:8080
+
+
+        Freenom.com //domain name avsan
+        infinityfree.net //web hosting , maganager geh met
        -->
   </body>
 </html>
