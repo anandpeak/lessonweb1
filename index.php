@@ -28,7 +28,8 @@
 
 
         Freenom.com //domain name avsan
-        infinityfree.net //web hosting , maganager geh met
+        infinityfree.net //web hosting , maganager geh met //https://cpanel.epizy.com/panel/indexpl.php
+        https://www.youtube.com/watch?v=v_jZP4WvZ-w
        -->
   </body>
 </html>
