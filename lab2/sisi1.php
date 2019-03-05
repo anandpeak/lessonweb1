@@ -124,6 +124,8 @@
 		
 
 		$student2 = array();
+		//daalgavar 2iin guitetgesen daalgavar
+		//tuhain oyutnii neriig haihad medeelel ni garj irne
 		function findName($findName, $student1,$n,$student2){
 			echo "<table>";
 			echo "<tr>";
