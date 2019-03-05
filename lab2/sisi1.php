@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<style>
+	table{
+	 		border:1px solid black;
+	 		width: 100%;
+	 	}
+	 	tr, td{
+	 		border:1px solid black;
+	 	}
+	</style>
 	<title></title>
 </head>
 <body>
@@ -74,6 +83,9 @@
 			public function getlastName(){
 				return $this->lastName;
 			}
+			public function getsisiId(){
+				return $this->sisiId;
+			}
 			public function getMajor(){
 				return $this->major;
 			}
@@ -109,10 +121,28 @@
 		//$q = "cs" + "$q1";
 		//echo "$q";
 
-
 		
+
 		$student2 = array();
 		function findName($findName, $student1,$n,$student2){
+			echo "<table>";
+			echo "<tr>";
+				echo "<td>";
+					echo "<p>" ."firstName". "</p>";
+				echo "</td>";
+				echo "<td>";
+					echo "<p>" ."lastName". "</p>";
+				echo "</td>";
+				echo "<td>";
+					echo "<p>" ."sisiId". "</p>";
+				echo "</td>";
+				echo "<td>";
+					echo "<p>" ."major". "</p>";
+				echo "</td>";
+				echo "<td>";
+					echo "<p>" ."Lessons". "</p>";
+				echo "</td>";
+			echo "</tr>";
 			$b = strlen($findName);
 			for($i=0; $i<2; $i++){
 				$c = strlen($student1[$i]->getfirstName());
@@ -128,6 +158,27 @@
 					elseif($b == $j){
 						$student2[] = $sName;
 						$num++;
+						echo "<tr>";
+							echo "<td>";
+								echo "<p>". $student1[$i]->getfirstName() . "</p>";
+							echo "</td>";
+							echo "<td>";
+								echo "<p>". $student1[$i]->getlastName() . "</p>";
+							echo "</td>";
+							echo "<td>";
+								echo "<p>". $student1[$i]->getsisiId() . "</p>";
+							echo "</td>";
+							echo "<td>";
+								echo "<p>". $student1[$i]->getMajor() . "</p>";
+							echo "</td>";
+							echo "<td>";
+								$kr = 0;
+								while($student1[$i]->getlessons($kr)){
+									echo "<p>". $student1[$i]->getlessons($kr) . "</p>";
+									$kr++;
+								}
+							echo "</td>";
+						echo "</tr>";
 						//var_dump($student2);
 						break;
 
@@ -138,15 +189,133 @@
 					}
 				}
 			}
+			echo "</table>";
 			return $student2;
 		}
 
-
 		$student2 = findName("a",$student1,2,$student2);
-		var_dump($student2);
-		for($i=0; $i<2; $i++){
-			echo "<p>". $student2[$i] ."</p>";
+		var_dump($student2[1]);
+		$endStudent;
+
+		/*
+		echo "<table>";
+			echo "<tr>";
+				echo "<td>";
+					echo "<p>" ."firstName". "</p>";
+				echo "</td>";
+				echo "<td>";
+					echo "<p>" ."lastName". "</p>";
+				echo "</td>";
+				echo "<td>";
+					echo "<p>" ."sisiId". "</p>";
+				echo "</td>";
+				echo "<td>";
+					echo "<p>" ."major". "</p>";
+				echo "</td>";
+				echo "<td>";
+					echo "<p>" ."Lessons". "</p>";
+				echo "</td>";
+			echo "</tr>";
+		for($i = 0; $student2[$i] != end($student2) ; $i++){ 					// student2 array dotor baigaa elementuudiig hamgiin suuliin element hurtel davtaj, tuhain songogdoj avsan elementee student1 tei jishene
+			for($j = 0; $student1[$j] != end($student1); $j++){
+				if($student2[$i] == $student1[$j]->getfirstName()){
+					echo "<tr>";
+						echo "<td>";
+							echo "<p>". $student1[$j]->getfirstName() . "</p>";
+						echo "</td>";
+						echo "<td>";
+							echo "<p>". $student1[$j]->getlastName() . "</p>";
+						echo "</td>";
+						echo "<td>";
+							echo "<p>". $student1[$j]->getsisiId() . "</p>";
+						echo "</td>";
+						echo "<td>";
+							echo "<p>". $student1[$j]->getMajor() . "</p>";
+						echo "</td>";
+						echo "<td>";
+							$kr = 0;
+							while($student1[$j]->getlessons($kr)){
+								echo "<p>". $student1[$j]->getlessons($kr) . "</p>";
+								$kr++;
+							}
+						echo "</td>";
+					echo "</tr>";
+				}
+			}
+			if($student2[$i] == $student1[$j]->getfirstName()){
+				echo "<tr>";
+						echo "<td>";
+							echo "<p>". $student1[$j]->getfirstName() . "</p>";
+						echo "</td>";
+						echo "<td>";
+							echo "<p>". $student1[$j]->getlastName() . "</p>";
+						echo "</td>";
+						echo "<td>";
+							echo "<p>". $student1[$j]->getsisiId() . "</p>";
+						echo "</td>";
+						echo "<td>";
+							echo "<p>". $student1[$j]->getMajor() . "</p>";
+						echo "</td>";
+						echo "<td>";
+							$kr = 0;
+							while($student1[$j]->getlessons($kr)){
+								echo "<p>". $student1[$j]->getlessons($kr) . "</p>";
+								$kr++;
+							}
+						echo "</td>";
+					echo "</tr>";
+			}
 		}
+		for($j = 0; $student1[$j] != end($student1); $j++){
+				if($student2[$i] == $student1[$j]->getfirstName()){
+					echo "<tr>";
+						echo "<td>";
+							echo "<p>". $student1[$j]->getfirstName() . "</p>";
+						echo "</td>";
+						echo "<td>";
+							echo "<p>". $student1[$j]->getlastName() . "</p>";
+						echo "</td>";
+						echo "<td>";
+							echo "<p>". $student1[$j]->getsisiId() . "</p>";
+						echo "</td>";
+						echo "<td>";
+							echo "<p>". $student1[$j]->getMajor() . "</p>";
+						echo "</td>";
+						echo "<td>";
+							$kr = 0;
+							while($student1[$j]->getlessons($kr)){
+								echo "<p>". $student1[$j]->getlessons($kr) . "</p>";
+								$kr++;
+							}
+						echo "</td>";
+					echo "</tr>";
+				}
+			}
+			if($student2[$i] == $student1[$j]->getfirstName()){
+				echo "<tr>";
+						echo "<td>";
+							echo "<p>". $student1[$j]->getfirstName() . "</p>";
+						echo "</td>";
+						echo "<td>";
+							echo "<p>". $student1[$j]->getlastName() . "</p>";
+						echo "</td>";
+						echo "<td>";
+							echo "<p>". $student1[$j]->getsisiId() . "</p>";
+						echo "</td>";
+						echo "<td>";
+							echo "<p>". $student1[$j]->getMajor() . "</p>";
+						echo "</td>";
+						echo "<td>";
+							$kr = 0;
+							while($student1[$j]->getlessons($kr)){
+								echo "<p>". $student1[$j]->getlessons($kr) . "</p>";
+								$kr++;
+							}
+						echo "</td>";
+					echo "</tr>";
+			}
+
+		*/
 
 	?>
 </body>
