@@ -68,8 +68,10 @@
 			public function setMajor($major){
 				$this->major = $major;
 			}
-			public function addlesson($index, $lessons1, $n){
-				for($i = 0; $i<=$n ; $i++){
+			public function addlesson($index){
+				global $lessons1;
+				$n = count($lessons1);
+				for($i = 0; $i<=$n-1 ; $i++){
 					//var_dump($lessons1[$i]->index());
 					if($index == $lessons1[$i]->index()){
 						$this->lessons[] = $lessons1[$i];
@@ -104,16 +106,16 @@
 		$lessons1[] = new lesson("graphic", "cs306");
 
 		$student1[0] = new student("anand","altanhkhuyag","b1020","computer-science");
-		$student1[0] -> addlesson("cs202",$lessons1,8);
-		$student1[0] -> addlesson("cs204",$lessons1,8);
-		$student1[0] -> addlesson("cs200",$lessons1,8);
-		$student1[0] -> addlesson("cs306",$lessons1,8);
+		$student1[0] -> addlesson("cs202");
+		$student1[0] -> addlesson("cs204");
+		$student1[0] -> addlesson("cs200");
+		$student1[0] -> addlesson("cs306");
 
 		$student1[1] = new student("tsatsral","munkbat","b0637","software");
-		$student1[1] -> addlesson("cs205",$lessons1,8);
-		$student1[1] -> addlesson("cs101",$lessons1,8);
-		$student1[1] -> addlesson("cs204",$lessons1,8);
-		$student1[1] -> addlesson("cs301",$lessons1,8);
+		$student1[1] -> addlesson("cs205");
+		$student1[1] -> addlesson("cs101");
+		$student1[1] -> addlesson("cs204");
+		$student1[1] -> addlesson("cs301");
 		//var_dump($student1);
 		$les = $student1[0]->getlessons(0);
 		echo "<p>". $les ."</p>";
@@ -122,11 +124,13 @@
 		//echo "$q";
 
 		
-
-		$student2 = array();
 		//daalgavar 2iin guitetgesen daalgavar
 		//tuhain oyutnii neriig haihad medeelel ni garj irne
-		function findName($findName, $student1,$n,$student2){
+		//$student2 = array();
+		function findName($findName, $student1){
+
+			$n = count($student1);
+			var_dump($n);
 			echo "<table>";
 			echo "<tr>";
 				echo "<td>";
@@ -146,14 +150,17 @@
 				echo "</td>";
 			echo "</tr>";
 			$b = strlen($findName);
-			for($i=0; $i<2; $i++){
+			//$i heden shirheg oyutan baigaag haruulna
+			for($i=0; $i<$n; $i++){
 				$c = strlen($student1[$i]->getfirstName());
 				$j=0;
 				$p=0;
 				$sName = $student1[$i]->getfirstName();
+				//$j haij baigaa oyutnii neriig tulgaj baigaa huvisagch
+				//$p tuhain oyutnii nernii guuj baigaa huvisagch
 				while($p < $c){
+					//var_dump($sName[$p]);
 					if($findName[$j] == $sName[$p]){
-						//var_dump($sName[$p]);
 						$j++;
 						$p++;
 					}
@@ -194,10 +201,58 @@
 			echo "</table>";
 			return $student2;
 		}
-
-		$student2 = findName("a",$student1,2,$student2);
+		//daalgavar 2
+		echo "<h2>oyutnii nereer haisnii daraa medeelel gargah baidal</h2>";
+		$student2 = findName("a",$student1);
+		echo "<br>";
 		var_dump($student2[1]);
-		$endStudent;
+		
+		echo "<br>";
+		$numles = 0;
+
+		
+		$sisiId1 = "b1020";
+		$lesson3 = array("cs301", "cs303");
+
+		function addlesson($sisiId1, $lesson3){
+			global $student1;
+			global $lessons1;
+			$n = count($lesson3);
+			for($i = 0; $student1[$i-1] != end($student1); $i++){
+				if($student1[$i]->getsisiId() == $sisiId1){
+					for($j=0; $j<$n;$j++){
+						//print_r($lesson3[0]);
+						$student1[$i]->addlesson($lesson3[$j]);
+					}
+				}
+			}
+		} 
+		addlesson($sisiId1,$lesson3);
+		echo "<h2>Hicheel nemegdesnii daraa</h2>";
+		findName("a",$student1);
+
+
+
+
+
+
+/*
+		function addlesson(){
+			global $numles;
+			echo "heden hicheel songoh oruulah";
+			echo "<input type=\"number\" id=\"myNumber\" value = \"1\">";
+			echo "<button onclick = \"myFunction()\">oruulah</button>";
+			echo "<script>
+					function myFunction() {
+					 numl = document.getElementById(\"myNumber\").value;
+					 return numl;
+					}
+					</script>";
+		}
+		addlesson();
+		var_dump($numles);*/
+		
+
 
 		/*
 		echo "<table>";
@@ -316,8 +371,9 @@
 						echo "</td>";
 					echo "</tr>";
 			}
-
 		*/
+
+		
 
 	?>
 </body>
