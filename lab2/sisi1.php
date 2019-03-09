@@ -13,9 +13,13 @@
 	<title></title>
 </head>
 <body>
+
 	<?php
 	//composition burdel haritsaa
-
+	//student1 = buh oyutnii medeelel hadgalah oyutnii undsen objectuud bagtana
+	//student2 = oyutan dundaas ymar negen oiroltsoo utgaar haihad hargalzah oyutnii neriig medeelluudtei gargaj irj, neriig ni butsaana
+	//lessons1 = buh undsen hicheeluudiig hadgalsan bolno
+	//lesson3 =  daalgavar 3iig guitsetgehed hicheeluudiin index hadgalsan array bolno
 		class lesson{
 			public $kredit;
 			public $index;
@@ -122,6 +126,9 @@
 		//$q1 = 2112;
 		//$q = "cs" + "$q1";
 		//echo "$q";
+
+	//lab4
+
 
 		
 		//daalgavar 2iin guitetgesen daalgavar
@@ -231,8 +238,58 @@
 		echo "<h2>Hicheel nemegdesnii daraa</h2>";
 		findName("a",$student1);
 
+		function sort_print($student1){
+			global $student1;
+			echo "<br>";
+			echo "<h2>Dooroos sortloson ni </h2>";
+			rsort($student1);
+			$x = count($student1);
+			echo"<table>";
+			echo "<tr>";
+				echo "<td>";
+					echo "<p>" ."firstName". "</p>";
+				echo "</td>";
+				echo "<td>";
+					echo "<p>" ."lastName". "</p>";
+				echo "</td>";
+				echo "<td>";
+					echo "<p>" ."sisiId". "</p>";
+				echo "</td>";
+				echo "<td>";
+					echo "<p>" ."major". "</p>";
+				echo "</td>";
+				echo "<td>";
+					echo "<p>" ."Lessons". "</p>";
+				echo "</td>";
+			echo "</tr>";
+			for($i = 0; $i < $x; $i++){
+						echo "<tr>";
+							echo "<td>";
+								echo "<p>". $student1[$i]->getfirstName() . "</p>";
+							echo "</td>";
+							echo "<td>";
+								echo "<p>". $student1[$i]->getlastName() . "</p>";
+							echo "</td>";
+							echo "<td>";
+								echo "<p>". $student1[$i]->getsisiId() . "</p>";
+							echo "</td>";
+							echo "<td>";
+								echo "<p>". $student1[$i]->getMajor() . "</p>";
+							echo "</td>";
+							echo "<td>";
+								$kr = 0;
+								while($student1[$i]->getlessons($kr)){
+									echo "<p>". $student1[$i]->getlessons($kr) . "</p>";
+									$kr++;
+								}
+							echo "</td>";
+						echo "</tr>";
+			}
+			echo "</table>";
 
-
+		}
+		sort_print($student1);
+		//print_r($student1);
 
 
 
