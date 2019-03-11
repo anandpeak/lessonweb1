@@ -20,6 +20,14 @@
 	//student2 = oyutan dundaas ymar negen oiroltsoo utgaar haihad hargalzah oyutnii neriig medeelluudtei gargaj irj, neriig ni butsaana
 	//lessons1 = buh undsen hicheeluudiig hadgalsan bolno
 	//lesson3 =  daalgavar 3iig guitsetgehed hicheeluudiin index hadgalsan array bolno
+	/*
+		Lesson turliin ugugduliin butets ni hicheeliin kredit bolon, index, tuhain hicheeliin neriig aguuldag
+		Student turliin ugugduliin butets ni uuriin ner, major, ovog, sisiId bolon tuhain oyutnii uzsen hicheeliig bagtaah husnegten huvisagchtai ene ni oyutan anh orj irhed dotor ni hicheel uzeegui bh bogood student turliin object ni hicheel nemeh addlessons() function tai.
+
+
+
+
+	*/
 		class lesson{
 			public $kredit;
 			public $index;
@@ -75,7 +83,7 @@
 			public function addlesson($index){
 				global $lessons1;
 				$n = count($lessons1);
-				for($i = 0; $i<=$n-1 ; $i++){
+				for($i = 0; $i<$n ; $i++){
 					//var_dump($lessons1[$i]->index());
 					if($index == $lessons1[$i]->index()){
 						$this->lessons[] = $lessons1[$i];
