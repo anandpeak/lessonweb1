@@ -131,7 +131,6 @@
 
 
 		
-		//daalgavar 2iin guitetgesen daalgavar
 		//tuhain oyutnii neriig haihad medeelel ni garj irne
 		//$student2 = array();
 		function findName($findName, $student1){
@@ -208,7 +207,9 @@
 			echo "</table>";
 			return $student2;
 		}
+
 		//daalgavar 2
+		echo"<h2> Daalgavar 2 </h2>";
 		echo "<h2>oyutnii nereer haisnii daraa medeelel gargah baidal</h2>";
 		$student2 = findName("a",$student1);
 		echo "<br>";
@@ -218,6 +219,7 @@
 		$numles = 0;
 
 		
+
 		$sisiId1 = "b1020";
 		$lesson3 = array("cs301", "cs303");
 
@@ -235,9 +237,9 @@
 			}
 		} 
 		addlesson($sisiId1,$lesson3);
+		echo "<h2>Daalgavar 3</h2>";
 		echo "<h2>Hicheel nemegdesnii daraa</h2>";
-		findName("a",$student1);
-
+		findName("a",$student1); 					//Nemegdsen hicheeliig haruulahdaa omnoh function aa ashiglasan 
 		function sort_print($student1){
 			global $student1;
 			echo "<br>";
@@ -288,13 +290,13 @@
 			echo "</table>";
 
 		}
+				echo "<h2> daalgavar 4 </h2>";
 		sort_print($student1);
 		//print_r($student1);
 
 		//lab 5
 
-
-
+		echo "<h2> daalgavar5 file-d write, read hiisen baidal</h2>";
 		function write_read(){
 			global $student1, $student2;
 			$myfile = fopen("lab2a.txt", "w");
