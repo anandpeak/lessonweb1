@@ -293,6 +293,18 @@
 
 		//lab 5
 
+
+
+		function write_read(){
+			global $student1, $student2;
+			$myfile = fopen("lab2a.txt", "w");
+			fwrite($myfile, print_r($student1,TRUE));
+			$read1 = file_get_contents("lab2a.txt");
+			print_r($read1);
+			fclose($myfile);
+		}
+		write_read();
+
 /*
 		function addlesson(){
 			global $numles;
