@@ -18,8 +18,11 @@
 	
 			
 	<?php 
-        
-        
+		if(isset($_POST['login_name'])&&
+		   isset($_POST['login_password'])
+		){
+			echo "amjilttai";
+		}
         
 	?>
 
