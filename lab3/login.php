@@ -17,7 +17,7 @@
         <form action = "index.php" method = "post">
             Username<input type="text" name = "login_name" ></br>
             Password <input type="password" name = "login_password" ></br>
-           <a href="index.php"> <input type = "submit" value ="Sign in"></a>
+           <input type = "submit" value ="Sign in">
         </form>
     </div>
     
