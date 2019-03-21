@@ -61,16 +61,20 @@ EOT;
 			//hicheeliin medeelliig lesson tablees avah
 			$sql = $pdo->prepare("SELECT * FROM SISI2.lesson");
 			$sql ->execute();
+			echo "<form action='index.php' method='post'>";
 			 echo "<table>";
 			 while($row = $sql->fetch()){
 				echo <<<EOT
 				<tr>
 					<td> lesson: $row->lesson_name</td>
+					<td> Songoh: <input type = 'checkbox' name = "check[]" value = $row->id> </td>
 				</tr>
 EOT;
 
 			 }
 			 echo "</table>";
+			 echo"<input type='submit' value = 'save'>";
+			 echo"</form>";
 		}
 
 
