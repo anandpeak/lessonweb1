@@ -18,6 +18,61 @@
 	
 	
 	<?php 
+		$servername = "localhost:3306";
+		$username = "root";
+		$password = "Eff123456";
+		$db = "SISI2";
+
+		try{
+			$pdo = new PDO('mysql:host=localhost; dbname = SISI2; port=3306', $username, $password);
+			$pdo -> setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+			echo "amjilttai";
+		
+			}catch(PDOException $e){
+				echo "aldaatai:" . $e->getMessage();
+			}
+
+			if(isset($_POST['login_name'])&&
+			isset($_POST['login_password'])
+		 ){
+			 $user = $_POST['login_name'];
+			 $pass = $_POST['login_password'];
+			 //suragchiin medeeleliig student table ees avah 
+			 $query = $pdo->prepare("SELECT * FROM SISI2.student WHERE userName = '$user' AND passWord1 = '$pass'");
+			 $query->execute();
+			 $row = $query->fetch();
+			
+
+			 $a = $row->id;
+			 echo "a=".$a;
+			 echo "<table>";
+				echo <<<EOT
+			<tr>
+				<td>ID:			$row->id</td>
+				<td>Firstname: $row->firstName</td>
+				<td>LastName: $row->lastName</td>
+				<td>Gender: $row->gender</td>
+				<td>Major_id: $row->major</td>
+			</tr>
+EOT;
+			echo "</table>";
+			echo"<br><br><br><br>";
+
+			//hicheeliin medeelliig lesson tablees avah
+			$sql = $pdo->prepare("SELECT * FROM SISI2.lesson");
+			$sql ->execute();
+			 echo "<table>";
+			 while($row = $sql->fetch()){
+				echo <<<EOT
+				<tr>
+					<td> lesson: $row->lesson_name</td>
+				</tr>
+EOT;
+
+			 }
+			 echo "</table>";
+		}
+
 
 
 /*
