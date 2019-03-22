@@ -25,9 +25,7 @@
 
 		try{
 			$pdo = new PDO('mysql:host=localhost; dbname = SISI2; port=3306', $username, $password);
-			$pdo -> setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
-			echo "amjilttai";
-		
+			$pdo -> setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);		
 			}catch(PDOException $e){
 				echo "aldaatai:" . $e->getMessage();
 			}
@@ -40,11 +38,11 @@
 			 //suragchiin medeeleliig student table ees avah 
 			 $query = $pdo->prepare("SELECT * FROM SISI2.student WHERE userName = '$user' AND passWord1 = '$pass'");
 			 $query->execute();
+			 global $row;
 			 $row = $query->fetch();
-			
+					
 
-			 $a = $row->id;
-			 echo "a=".$a;
+	
 			 echo "<table>";
 				echo <<<EOT
 			<tr>
@@ -63,20 +61,44 @@ EOT;
 			$sql ->execute();
 			echo "<form action='index.php' method='post'>";
 			 echo "<table>";
-			 while($row = $sql->fetch()){
-				echo <<<EOT
-				<tr>
-					<td> lesson: $row->lesson_name</td>
-					<td> Songoh: <input type = 'checkbox' name = "check[]" value = $row->id> </td>
-				</tr>
-EOT;
-
+			 while($row1 = $sql->fetch()){
+			echo "<tr>";
+			echo	"<td> lesson: $row1->lesson_name</td>";
+			$qur = $row1->id;
+			$ss = $pdo->prepare("SELECT * FROM SISI2.stu_les s, SISI2.lesson l WHERE s.lesson_id = '$qur' AND l.id = '$row1->id' AND s.student_id = '$row->id'");
+			$ss->execute();
+			while($row2 = $ss->fetch()){
+				//echo "<br>";
+				//echo $row2->student_id;
+				$les1[] = $row2->lesson_id;
+				//echo $row2->id;
+			//	var_dump($les1);	
+			} 
+			if(in_array($row1->id , $les1)){
+				echo	"<td> Songoh: <input type = 'checkbox' name = 'check1[]' value = $row1->id checked> </td>";
+			}else{
+				echo	"<td> Songoh: <input type = 'checkbox' name = 'check[]' value = $row1->id> </td>";
+				echo 	"<input type = 'hidden' name = 'stu_id' value = $row->id>";
+			}
+			echo 	"</tr>";
 			 }
 			 echo "</table>";
 			 echo"<input type='submit' value = 'save'>";
 			 echo"</form>";
+			
 		}
+		if(isset($_POST['check']) &&
+			isset($_POST['stu_id'])){
+				print_r($_POST['check']);
 
+			$check = $_POST['check'];
+			$stu_id = $_POST['stu_id'];
+			foreach ($check as $checked){
+				//var_dump($stu_id);
+				$query = $pdo->prepare("INSERT INTO SISI2.stu_les VALUES(NULL,$stu_id,'$checked')");
+				$query->execute();
+			}
+		}
 
 
 /*
