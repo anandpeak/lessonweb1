@@ -75,9 +75,9 @@ EOT;
 			//	var_dump($les1);	
 			} 
 			if(in_array($row1->id , $les1)){
-				echo	"<td> Songoh: <input type = 'checkbox' name = 'check1[]' value = $row1->id checked> </td>";
+				echo	"<td style= 'background-color:green;' > Songoh: <input type = 'checkbox' name = 'check1[]' value = $row1->id checked> </td>";
 			}else{
-				echo	"<td> Songoh: <input type = 'checkbox' name = 'check[]' value = $row1->id> </td>";
+				echo	"<td > Songoh: <input type = 'checkbox' name = 'check[]' value = $row1->id> </td>";
 				echo 	"<input type = 'hidden' name = 'stu_id' value = $row->id>";
 			}
 			echo 	"</tr>";
