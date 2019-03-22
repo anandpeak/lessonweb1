@@ -33,16 +33,14 @@
 			if(isset($_POST['login_name'])&&
 			isset($_POST['login_password'])
 		 ){
-			 $user = $_POST['login_name'];
-			 $pass = $_POST['login_password'];
+			 $user = filter_var($_POST['login_name'], FILTER_SANITIZE_STRING,FILTER_FLAG_ENCODE_HIGH);
+			 var_dump($user);
+			 $pass = filter_var($_POST['login_password'],FILTER_SANITIZE_STRING);
 			 //suragchiin medeeleliig student table ees avah 
 			 $query = $pdo->prepare("SELECT * FROM SISI2.student WHERE userName = '$user' AND passWord1 = '$pass'");
 			 $query->execute();
-			 global $row;
 			 $row = $query->fetch();
 					
-
-	
 			 echo "<table>";
 				echo <<<EOT
 			<tr>
@@ -50,7 +48,7 @@
 				<td>Firstname: $row->firstName</td>
 				<td>LastName: $row->lastName</td>
 				<td>Gender: $row->gender</td>
-				<td>Major_id: $row->major</td>
+				<td>Major_id: $row->major_id</td>
 			</tr>
 EOT;
 			echo "</table>";
