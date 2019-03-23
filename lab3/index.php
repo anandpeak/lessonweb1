@@ -37,13 +37,13 @@
 			isset($_POST['login_password'])
 		 ){
 			 $user = filter_var($_POST['login_name'], FILTER_SANITIZE_STRING,FILTER_FLAG_ENCODE_HIGH);
-			 var_dump($user);
+			 //var_dump($user);
 			 $pass = filter_var($_POST['login_password'],FILTER_SANITIZE_STRING);
 			 //suragchiin medeeleliig student table ees avah 
 			 $query = $pdo->prepare("SELECT * FROM SISI2.student WHERE userName = '$user' AND passWord1 = '$pass'");
 			 $query->execute();
 			 $row = $query->fetch();
-					
+			echo "<h3>Оюутны мэдээлэл</h3>";		
 			 echo "<table>";
 				echo <<<EOT
 			<tr>
@@ -55,8 +55,8 @@
 			</tr>
 EOT;
 			echo "</table>";
-			echo"<br><br><br><br>";
-
+			echo"<br><br>";
+			echo "<h3>Хичээлийн мэдээлэл</h3>";
 			//hicheeliin medeelliig lesson tablees avah
 			$sql = $pdo->prepare("SELECT * FROM SISI2.lesson");
 			$sql ->execute();

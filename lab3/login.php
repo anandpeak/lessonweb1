@@ -20,7 +20,7 @@
          .image{
             display:table;
             background-repeat: no-repeat;
-            background-image: url("https://scontent.fuln6-1.fna.fbcdn.net/v/t1.0-9/12391829_971768356204046_291233703035688686_n.png?_nc_cat=108&_nc_eui2=AeEz0lR5zK5I29c7aRQ0Ji_O58KQiH9lp6NQSO9EJipZIr6J0vcOgQqnl1CqJ1-QZkgcvawUsk7I9NRprVkEfGcuKkbSF-jqryZ05lQrJfWYBQ&_nc_ht=scontent.fuln6-1.fna&oh=3492de21e48eb2ad79fe45bcc3c02b53&oe=5D16E9FB");
+            background-image: url(num.png);
             height:900px;
             width:100%;
             position: relative;
