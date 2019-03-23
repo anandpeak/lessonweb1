@@ -10,6 +10,9 @@
 	 	tr, td{
 	 		border:1px solid black;
 	 	}
+         body{
+			background-color:#E0FFFF;
+		}
 	</style>
 	<title></title>
 	<meta charset="utf-8">
