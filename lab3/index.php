@@ -25,7 +25,6 @@
 		$username = "root";
 		$password = "Eff123456";
 		$db = "SISI2";
-
 		try{
 			$pdo = new PDO('mysql:host=localhost; dbname = SISI2; port=3306', $username, $password);
 			$pdo -> setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);		
