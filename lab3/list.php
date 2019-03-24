@@ -69,7 +69,6 @@ if(isset($_GET['delete']) && isset($_GET['id'])){
 						<form action = "list.php" method = "get">
 							<input type = "hidden" name = "delete" value = "yes">
 							<input type = "hidden" name = "id" value = "$row[0]">
-		
 							<input type = "submit" value = "Delete Record">
 						</form>
 					</td>

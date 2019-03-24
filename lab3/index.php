@@ -35,6 +35,14 @@
 			if(isset($_POST['login_name'])&&
 			isset($_POST['login_password'])
 		 ){
+			 /*
+			 	$query = 'PREPARE statement FROM 'SELECT * FROM SISI2.student WHERE userName = ? AND passWord1 = ?'';
+				$query = 'SET @user = $_POST['login_name'],' .
+							'@pass = $_POST['login_password']'
+				mysqli_query($conn, $query); 
+				$query = 'EXECUTE statement USING @user, @pass';
+				mysqli_query($conn,$query);
+			 */
 			 $user = filter_var($_POST['login_name'], FILTER_SANITIZE_STRING,FILTER_FLAG_ENCODE_HIGH);
 			 //var_dump($user);
 			 $pass = filter_var($_POST['login_password'],FILTER_SANITIZE_STRING);
