@@ -39,9 +39,11 @@
 	<div id="cent">
          <p> netreh huudas  </p>
         <form action = "index.php" method = "post">
-            Username<input type="text" name = "login_name" ></br>
+            Username <input type="text" name = "login_name" ></br>
             Password <input type="password" name = "login_password" ></br>
-           <input type = "submit" value ="Sign in">
+            Do u wanna save ? <input type = "checkbox" name = "checkbox" value = "1"></br>
+            <a href="insert.php"><p>Sign up</p></a></br>
+        <input type = "submit" value ="Sign in">
         </form>
     </div>
     </div>

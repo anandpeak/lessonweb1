@@ -9,7 +9,7 @@
 		$username = "root";
 		$password = "Eff123456";
 
-		   $conn = mysqli_connect($servername, $username, $password);
+		 $conn = mysqli_connect($servername, $username, $password);
 	   
 	   if(! $conn ) {
 	      die('Could not connect: ' . mysql_error());

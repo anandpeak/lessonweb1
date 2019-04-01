@@ -21,7 +21,6 @@
         $password = $_GET['password'];
         $gender = $_GET['gender'];
         $major = $_GET['major_id'];
-
         $query = "UPDATE student SET firstName = '$firstname', lastName = '$lastname', userName = '$username', passWord1='$password', gender='$gender', major_id = '$major' WHERE id = '$id'";
         mysqli_query($conn,$query);
      }
@@ -34,9 +33,15 @@
          $result = mysqli_query($conn, $query);
          if(!$result) die ("DATAbase Access failed ". mysql_error());
          $row = mysqli_fetch_row($result);
+
+         //Cookies
+         setcookie('id',$id,time()+60*60*24*7,"/");
+         var_dump($_COOKIE['id']);
+
          echo <<<EOT
         <form action = "update.php" method = "get">
             <pre>
+
                 Id : <input type = "number" name = "id" value = $row[0]>
                 firstname: <input type = "text" name = "firstName" value = $row[1]>
                 lastname: <input type = "text" name = "lastName" value = $row[2]>

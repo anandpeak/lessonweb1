@@ -5,7 +5,7 @@
 	<style>
 	 	table{
 	 		border:1px solid black;
-	 		width: 100%;
+	 		width: 80%;
 	 	}
 	 	tr, td{
 	 		border:1px solid black;
@@ -16,13 +16,14 @@
 		body{
 			background-color:#E0FFFF;
 		}
+		h3{
+			display:inline;
+		}
 	</style>
 	<title></title>
 	<meta charset="utf-8">
 </head>
 <body>
-	
-			
 	<?php 
 		$servername = "localhost:3306";
 		$username = "root";
@@ -32,8 +33,22 @@
 	   if(! $conn ) {
 	      die('Could not connect: ' . mysql_error());
 	   }
-        echo <<<EOT
+
+		echo <<<EOT
+		<table>
+		<tr>
+		<td>
+			<h3>Оюутан нэмэх </h3>
+		</td>
+		</tr>
+	   <tr>
+		<td>
 			<a href="insert.php"><button>Insert</button></a> 
+		</td>
+		</tr>
+		</table>
+			<br><br>
+			<h3> Оюутнуудын мэдээлэл </h3>
 			
 EOT;
 if(isset($_GET['delete']) && isset($_GET['id'])){
@@ -45,7 +60,7 @@ if(isset($_GET['delete']) && isset($_GET['id'])){
 		echo "DELETE failed: $query <br>".mysql_error()."<br><br>";
 	}
 }
-
+		
 	   $query = "SELECT * FROM student";
 	   $result = mysqli_query($conn, $query);
 	   if(!$result) die ("DATAbase Access failed ". mysql_error());
@@ -56,14 +71,14 @@ if(isset($_GET['delete']) && isset($_GET['id'])){
 			echo <<<EOT
 				<tr>
 					<td>ID:			$row[0]</td>
-					<td>Firstname: $row[1]</td>
-					<td>LastName: $row[2]</td>
-					<td>Gender: $row[5]</td>
-					<td>Major_id: $row[6]</td>
+					<td>Firstname: 	$row[1]</td>
+					<td>LastName: 	$row[2]</td>
+					<td>Gender: 	$row[5]</td>
+					<td>Major_id: 	$row[6]</td>
 					<td>
 						<form action = "update.php" method="get">
 							<input type = "hidden" name = "update" value = "yes"> 
-							<input type = "hidden" name = "id" value="$row[0]">
+							<input type = "hidden" name = "id" value= "$row[0]">
 						<a href="update.php"><input type = "submit" value = "Update Record"></a>
 						</form>
 						<form action = "list.php" method = "get">
