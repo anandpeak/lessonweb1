@@ -1,3 +1,6 @@
+<?php
+	ob_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,9 +32,8 @@
 			//setAttribute -> database deer data nuudiig udirddah. 
 			$pdo -> setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);		
 			}catch(PDOException $e){
-				echo "aldaatai:" . $e->getMessage();
-			}
 
+			}
 			if(isset($_POST['login_name'])&&
 			isset($_POST['login_password'])
 		 ){ 
@@ -53,7 +55,8 @@
 				if(isset($_POST['checkbox'])){
 					if($_POST['checkbox'] == 1){
 						setcookie('username',$_POST['login_name'] ,time()+(7*60*60*24),"/");
-						var_dump($_COOKIE['username']);
+						//var_dump($_COOKIE['username']);
+						ob_end_flush();
 					}
 				}
 				echo "<h3>Оюутны мэдээлэл</h3>";		
