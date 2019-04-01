@@ -54,8 +54,10 @@
 			 if($row = $query->fetch()){
 				if(isset($_POST['checkbox'])){
 					if($_POST['checkbox'] == 1){
+						//hadgalah checkbox daraad amjilttai nevtersen tohioldold
 						setcookie('username',$_POST['login_name'] ,time()+(7*60*60*24),"/");
 						//var_dump($_COOKIE['username']);
+						//ob_start iin tugsgul ymar negen output urd ni gargahgui 
 						ob_end_flush();
 					}
 				}
