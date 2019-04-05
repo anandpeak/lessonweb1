@@ -144,7 +144,7 @@ EOT;
         $lowercase = preg_match('@[a-z]@', $password);
         $number    = preg_match('@[0-9]@', $password);
         $char      = preg_match('@[$,#,&,^,*]@', $password);
-        if(!$uppercase || !$lowercase || !$number || strlen($password) < 8 || !$char) {
+        if(!$uppercase || !$lowercase || !$number || strlen($password) < 6 || !$char) {
             // tell the user something went wrong
             echo " suga ";
         }
@@ -156,9 +156,8 @@ EOT;
                 echo "bolomjiin"; 
             }
             else{
-                echo "sul bn  ";
+                echo "sul bn ";
             }
-
         }   
         $query = "INSERT INTO staff VALUES"."(NULL,'$firstName','$lastName','$pos','$userName','$password')";
         if(!mysqli_query($conn, $query)){
@@ -169,6 +168,7 @@ EOT;
         if(!mysqli_query($conn, $query)){
             echo "INSERT failed: $query<br>".mysqli_error();	
         }
+        //uildel duussanii daraa login page ruu butsah uuniig zaaval neeh
         //header("Location: http://localhost:8080/~macuser/web1/lab3/login.php");
     }
     ob_end_flush();
