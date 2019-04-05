@@ -62,7 +62,7 @@
 		echo "<br><br>";
 			
 		for($j = 0; $j < $rows; $j++){
-			//fetch associative array
+			//fetch associative array 
 			//mysql_result php 7 version deer baihgui bolson
 			//fetch_assoc() hiigdeh burdee mor oo nemeed, assoc array aa $row["row_name"] butets ruu oruulj bn
 			$row = $result -> fetch_assoc();
@@ -79,7 +79,6 @@
 			echo "author: ". $row[0]. "   <br>  title: ". $row[1]. "   <br>   category:". $row[2]. "    <br>  YEAR: ". $row[3]. "   <br>   ISBN: ". $row[4]."<br>";
 			echo "<br>";
 			echo "<br>";
-
 		}
 		//require_once == import
 

@@ -20,7 +20,6 @@
 	<meta charset="utf-8">
 </head>
 <body>
-
 	<?php 
 	//header("location:login.php?st=err");
 		$servername = "localhost:3306";
@@ -52,7 +51,7 @@
 			 $query = $pdo->prepare("SELECT * FROM SISI2.student WHERE userName = '$user' AND passWord1 = '$pass'");
 			 $query->execute();
 			 if($row = $query->fetch()){
-				if(isset($_POST['checkbox'])){
+				if(isset($_POST['checkbox'])){	
 					if($_POST['checkbox'] == 1){
 						//hadgalah checkbox daraad amjilttai nevtersen tohioldold
 						setcookie('username',$_POST['login_name'] ,time()+(7*60*60*24),"/");
@@ -104,6 +103,7 @@ EOT;
 				echo "</table>";
 				echo"<input type='submit' value = 'save'>";
 				echo"</form>";
+				echo"<a href='lougout.php'</a>";
 			 }
 			 else{
 				header("Location: http://localhost:8080/~macuser/web1/lab3/login.php");
