@@ -47,9 +47,12 @@
 			 $user = filter_var($_POST['login_name'], FILTER_SANITIZE_STRING);
 			 //var_dump($user);
 			 $pass = filter_var($_POST['login_password'],FILTER_SANITIZE_STRING);
+			 //nuhtsuluudee shalgah , nuhtsul bieleegui tohioldold login ruu butsaah uildel hiih
+
 			 //suragchiin medeeleliig student table ees avah 
 			 $query = $pdo->prepare("SELECT * FROM SISI2.student WHERE userName = '$user' AND passWord1 = '$pass'");
 			 $query->execute();
+			 //oyutnii medeelel oldvol hevlej haruulna
 			 if($row = $query->fetch()){
 				if(isset($_POST['checkbox'])){	
 					if($_POST['checkbox'] == 1){
@@ -79,6 +82,7 @@ EOT;
 				$sql ->execute();
 				echo "<form action='index.php' method='post'>";
 				echo "<table>";
+				//
 				while($row1 = $sql->fetch()){
 					echo "<tr>";
 					echo "<td> lesson: $row1->lesson_name</td>";
@@ -103,13 +107,16 @@ EOT;
 				echo "</table>";
 				echo"<input type='submit' value = 'save'>";
 				echo"</form>";
-				echo"<a href='lougout.php'</a>";
+				echo"<a href='lougout.php'>Гарах</a>";
+				}
+				else{
+					header("Location: http://localhost:8080/~macuser/web1/lab3/login.php");
+					// echo "Уучлаарай таны нэвтрэх нууц үг юм уу пасс буруу юм шиг санагдахгүй бна уу ??";
+				 }
 			 }
-			 else{
-				header("Location: http://localhost:8080/~macuser/web1/lab3/login.php");
-				// echo "Уучлаарай таны нэвтрэх нууц үг юм уу пасс буруу юм шиг санагдахгүй бна уу ??";
-			 }
-		}
+			 //Oyutnii medeelel oldoogui tohioldol butsaad ilgeeh
+
+		
 		if(isset($_POST['check']) &&
 			isset($_POST['stu_id'])){
 				print_r($_POST['check']);

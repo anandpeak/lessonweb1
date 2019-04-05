@@ -26,38 +26,45 @@
             position: relative;
             background-position: center;
             background-size: cover;
-
-
-
          }
 	</style>
 	<title></title>
 	<meta charset="utf-8">
+
 </head>
 <body>
 <?php
+$x = 4;
 echo <<<EOT
     <div class = "image">
-	<div id="cent">
-         <p> netreh huudas  </p>
-        <form action = "index.php" method = "post">
+        <div id="cent">
+            <p> netreh huudas  </p>
+            <form action = "index.php" method = "post" onsubmit = "return check()">
 EOT;
-        if(isset($_COOKIE['username'])){
-            $user = $_COOKIE['username'];
-           echo "Username <input type='text' name = 'login_name' value = $user></br>";
-        }else{
-           echo "Username <input type='text' name = 'login_name' ></br>";
-        }
-        echo<<<EOT
-            Password <input type="password" name = "login_password" ></br>
-            Do u wanna save ? <input type = "checkbox" name = "checkbox" value = "1"></br>
-            <a href="insert.php"><p>Sign up</p></a></br>
-        <input type = "submit" value ="Sign in">
-        </form>
+            if(isset($_COOKIE['username'])){
+                $user = $_COOKIE['username'];
+                echo "Username <input type='text' name = 'login_name' value = $user></br>";
+            }
+            else{
+                echo "Username <input type='text' name = 'login_name' ></br>";
+            }
+            echo<<<EOT
+                Password <input type="password" id = "pass" name = "login_password" ></br>
+                Do u wanna save ? <input type = "checkbox" name = "checkbox" value = "1"></br>
+                <a href="insert.php"><p>Sign up</p></a></br>
+                <input type = "submit" value ="Sign in">
+            </form>
+        </div>
     </div>
-    </div>
-
 EOT;
 ?>
+
+    <script>
+        function check(){
+            var x = document.getElementById("pass").value;
+            var y = '<?php echo "$x"; ?>';
+         }
+    </script>
+
 </body>
 </html>

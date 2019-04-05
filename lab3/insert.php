@@ -85,7 +85,7 @@ EOT;
                   <td> <input style= 'background-color:yellow;' type = "submit" value = "Insert"></td>
             </tr>
            </form>
-           </table>
+           </table> 
 EOT;
         }
     }else{
@@ -139,7 +139,27 @@ EOT;
         $userName = $_POST['userName'];
         $password = $_POST['passWord1'];
         $pos = $_POST['pos'];
+        //nuhtsuluud shalgah
+        $uppercase = preg_match('@[A-Z]@', $password);
+        $lowercase = preg_match('@[a-z]@', $password);
+        $number    = preg_match('@[0-9]@', $password);
+        $char      = preg_match('@[$,#,&,^,*]@', $password);
+        if(!$uppercase || !$lowercase || !$number || strlen($password) < 8 || !$char) {
+            // tell the user something went wrong
+            echo " suga ";
+        }
+        else{
+            if(preg_match('^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8}^',$password)){
+                echo "mash sn";
+            }
+            if(preg_match('^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8}^',$password)){
+                echo "bolomjiin"; 
+            }
+            else{
+                echo "sul bn  ";
+            }
 
+        }   
         $query = "INSERT INTO staff VALUES"."(NULL,'$firstName','$lastName','$pos','$userName','$password')";
         if(!mysqli_query($conn, $query)){
             echo "INSERT failed: $query<br>".mysqli_error();	
@@ -149,7 +169,7 @@ EOT;
         if(!mysqli_query($conn, $query)){
             echo "INSERT failed: $query<br>".mysqli_error();	
         }
-        header("Location: http://localhost:8080/~macuser/web1/lab3/login.php");
+        //header("Location: http://localhost:8080/~macuser/web1/lab3/login.php");
     }
     ob_end_flush();
 
