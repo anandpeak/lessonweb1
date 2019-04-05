@@ -48,12 +48,13 @@
 			 //var_dump($user);
 			 $pass = filter_var($_POST['login_password'],FILTER_SANITIZE_STRING);
 			 //nuhtsuluudee shalgah , nuhtsul bieleegui tohioldold login ruu butsaah uildel hiih
-
+			
 			 //suragchiin medeeleliig student table ees avah 
 			 $query = $pdo->prepare("SELECT * FROM SISI2.student WHERE userName = '$user' AND passWord1 = '$pass'");
 			 $query->execute();
 			 //oyutnii medeelel oldvol hevlej haruulna
 			 if($row = $query->fetch()){
+				
 				if(isset($_POST['checkbox'])){	
 					if($_POST['checkbox'] == 1){
 						//hadgalah checkbox daraad amjilttai nevtersen tohioldold
@@ -108,6 +109,8 @@ EOT;
 				echo"<input type='submit' value = 'save'>";
 				echo"</form>";
 				echo"<a href='lougout.php'>Гарах</a>";
+				} elseif($user == "admin" && $pass == "aanaa"){
+					header("Location: http://localhost:8080/~macuser/web1/lab3/users.php");
 				}
 				else{
 					header("Location: http://localhost:8080/~macuser/web1/lab3/login.php");

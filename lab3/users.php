@@ -48,19 +48,19 @@
         <tr>
             <td>ID:			$row[0]</td>
             <td>student id: $row[1]</td>
-            <td>staff id: 	$row[3]</td>
-            <td>username: 	$row[4]</td>
-            <td>password:   $row[5]</td>
+            <td>staff id: 	$row[2]</td>
+            <td>username: 	$row[3]</td>
+            <td>password:   $row[4]</td>
             <td>
                 <form action = "update.php" method="get">
                     <input type = "hidden" name = "update" value = "yes"> 
                     <input type = "hidden" name = "id" value= "$row[0]">
-                <a href="update.php"><input type = "submit" value = "Update Record"></a>
+                <a href="update.php"><input type = "submit" value = "inactive"></a>
                 </form>
                 <form action = "list.php" method = "get">
                     <input type = "hidden" name = "delete" value = "yes">
                     <input type = "hidden" name = "id" value = "$row[0]">
-                    <input type = "submit" value = "Delete Record">
+                    <input type = "submit" value = "change password">
                 </form>
             </td>
         </tr>
