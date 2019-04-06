@@ -52,70 +52,91 @@
 			 //suragchiin medeeleliig student table ees avah 
 			 $query = $pdo->prepare("SELECT * FROM SISI2.student WHERE userName = '$user' AND passWord1 = '$pass'");
 			 $query->execute();
-			 //oyutnii medeelel oldvol hevlej haruulna
+ 			 //admin hereglegchiin medeelel shalgah, admin hereglegchiin alert 3 bn 
+			 $query1 = $pdo->prepare("SELECT * FROM SISI2.users WHERE userName = '$user' AND userPassword = '$pass' AND alert = '3'");
+			 $query1->execute();
+			 
 			 if($row = $query->fetch()){
-				
-				if(isset($_POST['checkbox'])){	
-					if($_POST['checkbox'] == 1){
-						//hadgalah checkbox daraad amjilttai nevtersen tohioldold
-						setcookie('username',$_POST['login_name'] ,time()+(7*60*60*24),"/");
-						//var_dump($_COOKIE['username']);
-						//ob_start iin tugsgul ymar negen output urd ni gargahgui 
-						ob_end_flush();
+				 //adminaas ymar negen handalt avaagui uyiin oyutnii medeelluud
+				$query3 = $pdo->prepare("SELECT * FROM SISI2.users WHERE student_id = '$row->id'");
+				$query3->execute();
+				$row4 = $query3->fetch();
+				//var_dump($row4->alert);
+
+				if($row4->alert == NULL){
+					//login in hiihdee checkbox darval daraa orhod username hadgalagdsan bhaar cookie hiiw
+					if(isset($_POST['checkbox'])){	
+						if($_POST['checkbox'] == 1){
+							//hadgalah checkbox daraad amjilttai nevtersen tohioldold
+							setcookie('username',$_POST['login_name'] ,time()+(7*60*60*24),"/");
+							//var_dump($_COOKIE['username']);
+							//ob_start iin tugsgul ymar negen output urd ni gargahgui 
+							ob_end_flush();
+						}
 					}
-				}
-				echo "<h3>Оюутны мэдээлэл</h3>";		
-				echo "<table>";
-				echo <<<EOT
-				<tr>
-					<td>ID:			$row->id</td>
-					<td>Firstname: $row->firstName</td>
-					<td>LastName: $row->lastName</td>
-					<td>Gender: $row->gender</td>
-					<td>Major_id: $row->major_id</td>
-				</tr>
+
+					echo "<h3>Оюутны мэдээлэл</h3>";		
+					echo "<table>";
+					echo <<<EOT
+					<tr>
+						<td>ID:			$row->id</td>
+						<td>Firstname: $row->firstName</td>
+						<td>LastName: $row->lastName</td>
+						<td>Gender: $row->gender</td>
+						<td>Major_id: $row->major_id</td>
+					</tr>
 EOT;
-				echo "</table>";
-				echo"<br><br>";
-				echo "<h3>Хичээлийн мэдээлэл</h3>";
-				//hicheeliin medeelliig lesson tablees avah
-				$sql = $pdo->prepare("SELECT * FROM SISI2.lesson");
-				$sql ->execute();
-				echo "<form action='index.php' method='post'>";
-				echo "<table>";
-				//
-				while($row1 = $sql->fetch()){
-					echo "<tr>";
-					echo "<td> lesson: $row1->lesson_name</td>";
-					$qur = $row1->id;
-					$ss = $pdo->prepare("SELECT * FROM SISI2.stu_les s, SISI2.lesson l WHERE s.lesson_id = '$qur' AND l.id = '$row1->id' AND s.student_id = '$row->id'");
-					$ss->execute();
-					while($row2 = $ss->fetch()){
-						//echo "<br>";
-						//echo $row2->student_id;
-						$les1[] = $row2->lesson_id;
-						//echo $row2->id;
-						//	var_dump($les1);	
-					} 
-					if(in_array($row1->id , $les1)){
-						echo	"<td style= 'background-color:green;' > Songoh: <input type = 'checkbox' name = 'check1[]' value = $row1->id checked> </td>";
-					}else{
-						echo	"<td > Songoh: <input type = 'checkbox' name = 'check[]' value = $row1->id> </td>";
-						echo 	"<input type = 'hidden' name = 'stu_id' value = $row->id>";
+					echo "</table>";
+					echo"<br><br>";
+					echo "<h3>Хичээлийн мэдээлэл</h3>";
+					//hicheeliin medeelliig lesson tablees avah
+					$sql = $pdo->prepare("SELECT * FROM SISI2.lesson");
+					$sql ->execute();
+					echo "<form action='index.php' method='post'>";
+					echo "<table>";
+					//
+					while($row1 = $sql->fetch()){
+						echo "<tr>";
+						echo "<td> lesson: $row1->lesson_name</td>";
+						$qur = $row1->id;
+						$ss = $pdo->prepare("SELECT * FROM SISI2.stu_les s, SISI2.lesson l WHERE s.lesson_id = '$qur' AND l.id = '$row1->id' AND s.student_id = '$row->id'");
+						$ss->execute();
+						while($row2 = $ss->fetch()){
+							//echo "<br>";
+							//echo $row2->student_id;
+							$les1[] = $row2->lesson_id;
+							//echo $row2->id;
+							//	var_dump($les1);	
+						} 
+						if(in_array($row1->id , $les1)){
+							echo	"<td style= 'background-color:green;' > Songoh: <input type = 'checkbox' name = 'check1[]' value = $row1->id checked> </td>";
+						}else{
+							echo	"<td > Songoh: <input type = 'checkbox' name = 'check[]' value = $row1->id> </td>";
+							echo 	"<input type = 'hidden' name = 'stu_id' value = $row->id>";
+						}
+						echo 	"</tr>";
 					}
-					echo 	"</tr>";
-				}
-				echo "</table>";
-				echo"<input type='submit' value = 'save'>";
-				echo"</form>";
-				echo"<a href='lougout.php'>Гарах</a>";
-				} elseif($user == "admin" && $pass == "aanaa"){
-					header("Location: http://localhost:8080/~macuser/web1/lab3/users.php");
-				}
-				else{
+					echo "</table>";
+					echo"<input type='submit' value = 'save'>";
+					echo"</form>";
+					echo"<a href='lougout.php'>Гарах</a>";
+					}
+				elseif($row4->alert == 1){
+					setcookie('inactive','Таны эрх хаагдсан байна. Та системийн админтай холбодоно уу. Баярлалаа' ,time()+(1),"/");
 					header("Location: http://localhost:8080/~macuser/web1/lab3/login.php");
-					// echo "Уучлаарай таны нэвтрэх нууц үг юм уу пасс буруу юм шиг санагдахгүй бна уу ??";
-				 }
+					}
+				elseif($row->alert == 2){
+
+					}
+				} 
+			elseif($row2 = $query1->fetch()){
+				//cookie eer adminii id g ywuulj olon admintai bol hen ogsniin olj bh 
+				header("Location: http://localhost:8080/~macuser/web1/lab3/users.php");
+				}
+			else{
+				header("Location: http://localhost:8080/~macuser/web1/lab3/login.php");
+				// echo "Уучлаарай таны нэвтрэх нууц үг юм уу пасс буруу юм шиг санагдахгүй бна уу ??";
+				}
 			 }
 			 //Oyutnii medeelel oldoogui tohioldol butsaad ilgeeh
 

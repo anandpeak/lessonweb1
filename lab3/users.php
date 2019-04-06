@@ -1,4 +1,5 @@
-
+<?php 	ob_start();
+ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,13 +53,13 @@
             <td>username: 	$row[3]</td>
             <td>password:   $row[4]</td>
             <td>
-                <form action = "update.php" method="get">
-                    <input type = "hidden" name = "update" value = "yes"> 
+                <form action = "users.php" method="post">
+                    <input type = "hidden" name = "active" value = "yes"> 
                     <input type = "hidden" name = "id" value= "$row[0]">
                 <a href="update.php"><input type = "submit" value = "inactive"></a>
                 </form>
-                <form action = "list.php" method = "get">
-                    <input type = "hidden" name = "delete" value = "yes">
+                <form action = "users.php" method = "post">
+                    <input type = "hidden" name = "pass" value = "yes">
                     <input type = "hidden" name = "id" value = "$row[0]">
                     <input type = "submit" value = "change password">
                 </form>
@@ -68,8 +69,23 @@ EOT;
         }
     echo "</table>";
     
+    if(isset($_POST['id']) &&
+    isset($_POST['active'])
+    ){
+        $id = $_POST['id'];
+        $query = "UPDATE users set alert = 1 where id = '$id'";
+        mysqli_query($conn, $query);
+    }
+    if(isset($_POST['id'])&&
+        isset($_POST['pass'])
+    ){
+        $id = $_POST['id'];
+        $query = "UPDATE users set alert = 2 where id = 'id";
+        mysqli_query($conn, $query);
+    }
+    ob_end_flush();
 
-
+        
 ?>
 </body>
 </html>

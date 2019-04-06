@@ -35,10 +35,17 @@
 <body>
 <?php
 $x = 4;
+
 echo <<<EOT
     <div class = "image">
         <div id="cent">
-            <p> netreh huudas  </p>
+            <p> Нэвтрэх хуудас </p>
+EOT;
+            if(isset($_COOKIE['inactive'])){
+                $announce = $_COOKIE['inactive'];
+                echo "<p>$announce</p>";   
+            }
+            echo <<<EOT
             <form action = "index.php" method = "post" onsubmit = "return check()">
 EOT;
             if(isset($_COOKIE['username'])){
