@@ -118,6 +118,58 @@ EOT;
         $password = $_POST['passWord1'];
         $gender = $_POST['gender'];
         $major = $_POST['major_id'];
+        //nuhtsuluud shalgah
+        $uppercase = preg_match('@[A-Z]@', $password);
+        $lowercase = preg_match('@[a-z]@', $password);
+        $number    = preg_match('@[0-9]@', $password);
+        $char      = preg_match('@[$,#,&,^,*]@', $password);
+
+
+        $query1 = "SELECT * FROM user WHERE userName = '$userName'";
+        $res = mysqli_query($conn, $query1);
+        if(!mysqli_fetch_row($res)){
+
+        if(!$uppercase || !$lowercase || !$number || strlen($password) < 6 || !$char) {
+            // tell the user something went wrong
+            header("Location: http://localhost:8080/~macuser/web1/lab3/insert.php");
+        }
+        else{
+            if(preg_match('^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8}^',$password)){
+                $query = "INSERT INTO student VALUES"."(NULL,'$firstName','$lastName','$userName','$password','$gender','$major')";
+                if(!mysqli_query($conn, $query)){
+                    echo "INSERT failed: $query<br>".mysqli_error();	
+                }
+                $last_id = $conn->insert_id;
+                $query = "INSERT INTO users VALUES"."(NULL, '$last_id',NULL,'$userName','$password')";
+                if(!mysqli_query($conn, $query)){
+                    echo "INSERT failed: $query<br>".mysqli_error();	
+                }
+                setcookie('pass','Дээд зэргийн код амжилттай орууллаа.', time()+10, "/");
+                 header("Location: http://localhost:8080/~macuser/web1/lab3/login.php");
+            }
+            if(preg_match('^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8}^',$password)){
+                $query = "INSERT INTO student VALUES"."(NULL,'$firstName','$lastName','$userName','$password','$gender','$major')";
+                if(!mysqli_query($conn, $query)){
+                    echo "INSERT failed: $query<br>".mysqli_error();	
+                }
+                $last_id = $conn->insert_id;
+                $query = "INSERT INTO users VALUES"."(NULL, '$last_id',NULL,'$userName','$password',NULL)";
+                if(!mysqli_query($conn, $query)){
+                    echo "INSERT failed: $query<br>".mysqli_error();	
+                }
+                setcookie('pass','Дунд зэргийн код амжилттай орууллаа.', time()+10, "/");
+                header("Location: http://localhost:8080/~macuser/web1/lab3/login.php");
+            }
+            else{
+                echo "sul bn ";
+            }
+        }   
+    }
+    else{
+        echo "Tanii oruulsan pass buruu bn <br> Hamgiin bagdaa 1tom useg 1 jijig useg too tusgai temdegt baina";
+    }
+        //uildel duussanii daraa login page ruu butsah uuniig zaaval neeh
+        //header("Location: http://localhost:8080/~macuser/web1/lab3/login.php");
 
         $query = "INSERT INTO student VALUES"."(NULL,'$firstName','$lastName','$userName','$password','$gender','$major')";
         if(!mysqli_query($conn, $query)){
@@ -128,8 +180,7 @@ EOT;
         if(!mysqli_query($conn, $query)){
             echo "INSERT failed: $query<br>".mysqli_error();	
         }
-        header("Location: http://localhost:8080/~macuser/web1/lab3/login.php");
-    }if(isset($_POST['firstName'])&&
+    }elseif(isset($_POST['firstName'])&&
     isset($_POST['lastName'])&&
     isset($_POST['pos'])&&
     isset($_POST['userName'])&&
@@ -144,30 +195,52 @@ EOT;
         $lowercase = preg_match('@[a-z]@', $password);
         $number    = preg_match('@[0-9]@', $password);
         $char      = preg_match('@[$,#,&,^,*]@', $password);
+
+        $query1 = "SELECT * FROM user WHERE userName = '$userName'";
+        $res = mysqli_query($conn, $query1);
+        //omno username burtgeltei bnuu ugui u shalgaj bn 
+        if(!mysqli_fetch_row($res)){
+
         if(!$uppercase || !$lowercase || !$number || strlen($password) < 6 || !$char) {
             // tell the user something went wrong
-            echo " suga ";
+            header("Location: http://localhost:8080/~macuser/web1/lab3/insert.php");
         }
         else{
             if(preg_match('^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8}^',$password)){
-                echo "mash sn";
+                $query = "INSERT INTO staff VALUES"."(NULL,'$firstName','$lastName','$pos','$userName','$password')";
+                if(!mysqli_query($conn, $query)){
+                    echo "INSERT failed: $query<br>".mysqli_error();	
+                }
+                $last_id = $conn->insert_id;
+                $query = "INSERT INTO users VALUES"."(NULL, NULL,'$last_id','$userName','$password')";
+                if(!mysqli_query($conn, $query)){
+                    echo "INSERT failed: $query<br>".mysqli_error();	
+                }
+                setcookie('pass','Дээд зэргийн код амжилттай орууллаа.', time()+10, "/");
+                 header("Location: http://localhost:8080/~macuser/web1/lab3/login.php");
             }
             if(preg_match('^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8}^',$password)){
-                echo "bolomjiin"; 
+                $query = "INSERT INTO staff VALUES"."(NULL,'$firstName','$lastName','$pos','$userName','$password')";
+                if(!mysqli_query($conn, $query)){
+                    echo "INSERT failed: $query<br>".mysqli_error();	
+                }
+                $last_id = $conn->insert_id;
+                $query = "INSERT INTO users VALUES"."(NULL, NULL,'$last_id','$userName','$password',NULL)";
+                if(!mysqli_query($conn, $query)){
+                    echo "INSERT failed: $query<br>".mysqli_error();	
+                }
+                setcookie('pass','Дунд зэргийн код амжилттай орууллаа.', time()+10, "/");
+                header("Location: http://localhost:8080/~macuser/web1/lab3/login.php");
             }
             else{
-                echo "sul bn ";
+                
             }
         }   
-        $query = "INSERT INTO staff VALUES"."(NULL,'$firstName','$lastName','$pos','$userName','$password')";
-        if(!mysqli_query($conn, $query)){
-            echo "INSERT failed: $query<br>".mysqli_error();	
-        }
-        $last_id = $conn->insert_id;
-        $query = "INSERT INTO users VALUES"."(NULL, NULL,'$last_id','$userName','$password')";
-        if(!mysqli_query($conn, $query)){
-            echo "INSERT failed: $query<br>".mysqli_error();	
-        }
+    }
+    else{
+        echo "Tanii oruulsan pass buruu bn <br> Hamgiin bagdaa 1tom useg 1 jijig useg too tusgai temdegt baina";
+    }
+        
         //uildel duussanii daraa login page ruu butsah uuniig zaaval neeh
         //header("Location: http://localhost:8080/~macuser/web1/lab3/login.php");
     }
