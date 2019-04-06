@@ -56,7 +56,7 @@
                 <form action = "users.php" method="post">
                     <input type = "hidden" name = "active" value = "yes"> 
                     <input type = "hidden" name = "id" value= "$row[0]">
-                <a href="update.php"><input type = "submit" value = "inactive"></a>
+                    <input type = "submit" value = "inactive">
                 </form>
                 <form action = "users.php" method = "post">
                     <input type = "hidden" name = "pass" value = "yes">
@@ -76,11 +76,12 @@ EOT;
         $query = "UPDATE users set alert = 1 where id = '$id'";
         mysqli_query($conn, $query);
     }
+
     if(isset($_POST['id'])&&
         isset($_POST['pass'])
     ){
         $id = $_POST['id'];
-        $query = "UPDATE users set alert = 2 where id = 'id";
+        $query = "UPDATE users set alert = 2 where id = '$id'";
         mysqli_query($conn, $query);
     }
     ob_end_flush();

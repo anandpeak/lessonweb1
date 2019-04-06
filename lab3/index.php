@@ -55,6 +55,10 @@
  			 //admin hereglegchiin medeelel shalgah, admin hereglegchiin alert 3 bn 
 			 $query1 = $pdo->prepare("SELECT * FROM SISI2.users WHERE userName = '$user' AND userPassword = '$pass' AND alert = '3'");
 			 $query1->execute();
+
+			 $query2 = $pdo->prepare("SELECT * FROM SISI2.users WHERE userName = '$user' AND userPassword = '$pass'");
+			 $query2->execute();
+
 			 
 			 if($row = $query->fetch()){
 				 //adminaas ymar negen handalt avaagui uyiin oyutnii medeelluud
@@ -121,18 +125,41 @@ EOT;
 					echo"</form>";
 					echo"<a href='lougout.php'>Гарах</a>";
 					}
+				// inactive suragchid
 				elseif($row4->alert == 1){
 					setcookie('inactive','Таны эрх хаагдсан байна. Та системийн админтай холбодоно уу. Баярлалаа' ,time()+(1),"/");
 					header("Location: http://localhost:8080/~macuser/web1/lab3/login.php");
 					}
-				elseif($row->alert == 2){
-
+				// pass solih shaardlagtai suragchid
+				elseif($row4->alert == 2){
+					setcookie('pass',$row4->id,time()+(1),"/");
+					header("Location: http://localhost:8080/~macuser/web1/lab3/pass.php");
 					}
 				} 
 			elseif($row2 = $query1->fetch()){
 				//cookie eer adminii id g ywuulj olon admintai bol hen ogsniin olj bh 
 				header("Location: http://localhost:8080/~macuser/web1/lab3/users.php");
 				}
+			elseif($row3 = $query2->fetch()){
+				// var_dump($row3->student_id);
+				if($row3 ->student_id == NULL){
+					//engiin staff orj irhed
+					if($row3 ->alert == NULL){
+						setcookie('username',$_POST['login_name'] ,time()+(7*60*60*24),"/");
+						header("Location: http://localhost:8080/~macuser/web1/lab3/list.php");
+					}
+					//staff iig inactive bolgoh
+					elseif($row3->alert == 1){
+						setcookie('inactive','Таны эрх хаагдсан байна. Та системийн админтай холбодоно уу. Баярлалаа' ,time()+(1),"/");
+						header("Location: http://localhost:8080/~macuser/web1/lab3/login.php");
+					}
+					//staff iin pass iig solih
+					elseif($row3 ->alert == 2){
+						setcookie('pass',$row3->id,time()+(1),"/");
+						header("Location: http://localhost:8080/~macuser/web1/lab3/pass.php");
+					}
+				}
+			}
 			else{
 				header("Location: http://localhost:8080/~macuser/web1/lab3/login.php");
 				// echo "Уучлаарай таны нэвтрэх нууц үг юм уу пасс буруу юм шиг санагдахгүй бна уу ??";
