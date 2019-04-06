@@ -41,7 +41,10 @@ echo <<<EOT
         <div id="cent">
             <p> Нэвтрэх хуудас </p>
 EOT;
-            
+            if(isset($_COOKIE['pass'])){
+                $strenght = $_COOKIE['pass'];
+                echo"<p>$strenght</p>"; 
+            }
             if(isset($_COOKIE['inactive'])){
                 $announce = $_COOKIE['inactive'];
                 echo "<p>$announce</p>";   

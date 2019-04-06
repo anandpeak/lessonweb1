@@ -76,6 +76,7 @@ EOT;
                     mysqli_query($conn, $query);
                     $query1 = "UPDATE users SET alert = NULL WHERE id = '$row'";
                     mysqli_query($conn, $query1);
+                    setcookie('pass','Дээд зэргийн код амжилттай орууллаа.', time()+10, "/");
                     header("Location: http://localhost:8080/~macuser/web1/lab3/login.php");
                     //AA$0aaapo
                 }
@@ -84,7 +85,7 @@ EOT;
                     mysqli_query($conn, $query);
                     $query1 = "UPDATE users SET alert = NULL WHERE id = '$row'";
                     mysqli_query($conn, $query1);
-                    setcookie();
+                    setcookie('pass','Дунд зэргийн код амжилттай орууллаа.', time()+10, "/");
                     header("Location: http://localhost:8080/~macuser/web1/lab3/login.php");
 
                 }
