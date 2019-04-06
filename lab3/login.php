@@ -41,6 +41,7 @@ echo <<<EOT
         <div id="cent">
             <p> Нэвтрэх хуудас </p>
 EOT;
+            
             if(isset($_COOKIE['inactive'])){
                 $announce = $_COOKIE['inactive'];
                 echo "<p>$announce</p>";   
