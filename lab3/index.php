@@ -113,7 +113,7 @@ EOT;
 						echo "<tr>";
 						echo "<td> lesson: $row1->lesson_name</td>";
 						$qur = $row1->id;
-						$ss = $pdo->prepare("SELECT * FROM SISI2.stu_les s, SISI2.lesson l WHERE s.lesson_id = '$qur' AND l.id = '$row1->id' AND s.student_id = '$row->id'");
+						$ss = $pdo->prepare("SELECT * FROM SISI2.stu_les s, SISI2.lesson l WHERE s.lesson_id = '$qur' AND l.id = '$row1->id' AND s.student_id = '$row5->id'");
 						$ss->execute();
 						while($row2 = $ss->fetch()){
 							//echo "<br>";
@@ -126,7 +126,7 @@ EOT;
 							echo	"<td style= 'background-color:green;' > Songoh: <input type = 'checkbox' name = 'check1[]' value = $row1->id checked> </td>";
 						}else{
 							echo	"<td > Songoh: <input type = 'checkbox' name = 'check[]' value = $row1->id> </td>";
-							echo 	"<input type = 'hidden' name = 'stu_id' value = $row->id>";
+							echo 	"<input type = 'hidden' name = 'stu_id' value = $row5->id>";
 						}
 						echo 	"</tr>";
 					}
@@ -177,6 +177,7 @@ EOT;
 		
 		if(isset($_POST['check']) &&
 			isset($_POST['stu_id'])){
+				print_r($_POST['stu_id']);
 				print_r($_POST['check']);
 				$check = $_POST['check'];
 				$stu_id = $_POST['stu_id'];
