@@ -46,9 +46,11 @@
 			 */
 			 $user = filter_var($_POST['login_name'], FILTER_SANITIZE_STRING);
 			 //var_dump($user);
-			 $pass = filter_var($_POST['login_password'],FILTER_SANITIZE_STRING);
+			 $pass1 = filter_var($_POST['login_password'],FILTER_SANITIZE_STRING);
 			 //nuhtsuluudee shalgah , nuhtsul bieleegui tohioldold login ruu butsaah uildel hiih
-			
+			 $a = $pass1;
+			 $b = 'aa';
+			 $pass= hash('ripemd128', "$b$a");
 			 //suragchiin medeeleliig student table ees avah 
 			 $query = $pdo->prepare("SELECT * FROM SISI2.users WHERE userName = '$user' AND userPassword = '$pass' AND staff_id IS NULL");
 			 $query->execute();
@@ -60,8 +62,11 @@
 			 $query2 = $pdo->prepare("SELECT * FROM SISI2.users WHERE userName = '$user' AND userPassword = '$pass'");
 			 $query2->execute();
 
-			 
-			 if($row = $query->fetch()){
+			 if($row5 = $query1->fetch()){
+				//cookie eer adminii id g ywuulj olon admintai bol hen ogsniin olj bh 
+				header("Location: http://localhost:8080/~macuser/web1/lab3/users.php");
+				}
+			 elseif($row = $query->fetch()){
 				 //adminaas ymar negen handalt avaagui uyiin oyutnii medeelluud
 				$query3 = $pdo->prepare("SELECT * FROM SISI2.users WHERE student_id = '$row->student_id'");
 				$query3->execute();
@@ -141,10 +146,6 @@ EOT;
 					header("Location: http://localhost:8080/~macuser/web1/lab3/pass.php");
 					}
 				} 
-			elseif($row2 = $query1->fetch()){
-				//cookie eer adminii id g ywuulj olon admintai bol hen ogsniin olj bh 
-				header("Location: http://localhost:8080/~macuser/web1/lab3/users.php");
-				}
 			elseif($row3 = $query2->fetch()){
 				// var_dump($row3->student_id);
 				if($row3 ->student_id == NULL){
@@ -166,6 +167,7 @@ EOT;
 				}
 			}
 			else{
+				setcookie("pass","Nevtreh nuuts ug buruu baina",time()+5,"/");
 				header("Location: http://localhost:8080/~macuser/web1/lab3/login.php");
 				// echo "Уучлаарай таны нэвтрэх нууц үг юм уу пасс буруу юм шиг санагдахгүй бна уу ??";
 				}

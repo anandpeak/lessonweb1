@@ -61,6 +61,10 @@ EOT;
         if($pass1 == $pass2){
            // echo "bolson";
             //var_dump($pass2);
+            $a = 'aa';
+            $tok = hash('ripemd128',"$a$pass1");
+            if($pass1 != $pass){
+
             if($pass1 != $pass){
                 $uppercase = preg_match('@[A-Z]@', $pass1);
                 $lowercase = preg_match('@[a-z]@', $pass1);
@@ -72,7 +76,9 @@ EOT;
                     header("Location: http://localhost:8080/~macuser/web1/lab3/pass.php");
                 }
                 elseif(preg_match('^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{6}^',$pass1)){
-                    $query = "UPDATE users SET userPassword = '$pass1' WHERE id = '$row'";
+                    $a = 'aa';
+                     $tok = hash('ripemd128',"$a$pass1");
+                    $query = "UPDATE users SET userPassword = '$tok' WHERE id = '$row'";
                     mysqli_query($conn, $query);
                     $query1 = "UPDATE users SET alert = NULL WHERE id = '$row'";
                     mysqli_query($conn, $query1);
@@ -81,7 +87,9 @@ EOT;
                     //AA$0aaapo
                 }
                 elseif(preg_match('^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z].*[a-z]).{6}^',$pass1)){
-                    $query = "UPDATE users SET userPassword = '$pass1' WHERE id = '$row'";
+                    $a = 'aa';
+                 $tok = hash('ripemd128',"$a$pass1");
+                    $query = "UPDATE users SET userPassword = '$tok' WHERE id = '$row'";
                     mysqli_query($conn, $query);
                     $query1 = "UPDATE users SET alert = NULL WHERE id = '$row'";
                     mysqli_query($conn, $query1);
@@ -90,6 +98,11 @@ EOT;
 
                 }
             }
+        }
+        else{
+            setcookie('pass','omnoh passtai davhardsan uchiraas tsutsallaa',time()+5,"/");
+            header("Location: http://localhost:8080/~macuser/web1/lab3/login.php");
+        }
         }
        
     }

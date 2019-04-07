@@ -40,23 +40,27 @@
             $lastName = $_COOKIE['pass6'];
             $major = $_COOKIE['pass7'];
             if($major == NULL){
-            $query = "INSERT INTO staff VALUES"."(NULL,'$firstName','$lastName','$position','$userName','$password')";
+                $a = 'aa';
+                 $tok = hash('ripemd128',"$a$password");
+            $query = "INSERT INTO staff VALUES"."(NULL,'$firstName','$lastName','$position','$userName','$tok')";
                 if(!mysqli_query($conn, $query)){
                 echo "INSERT failed: $query<br>".mysqli_error();	
                 }
                 $last_id = $conn->insert_id;
-                $query = "INSERT INTO users VALUES"."(NULL, NULL,'$last_id','$userName','$password',NULL)";
+                $query = "INSERT INTO users VALUES"."(NULL, NULL,'$last_id','$userName','$tok',NULL)";
                 if(!mysqli_query($conn, $query)){
                         echo "INSERT failed: $query<br>".mysqli_error();	
                     }
                 }
                 else{
-                    $query = "INSERT INTO student VALUES"."(NULL,'$firstName','$lastName','$userName','$password','$position','$major')";
+                    $a = 'aa';
+                    $tok = hash('ripemd128',"$a$password");
+                    $query = "INSERT INTO student VALUES"."(NULL,'$firstName','$lastName','$userName','$tok','$position','$major')";
                         if(!mysqli_query($conn, $query)){
                             echo "INSERT failed: $query<br>".mysqli_error();	    
                         }
                         $last_id = $conn->insert_id;
-                        $query = "INSERT INTO users VALUES"."(NULL, '$last_id',NULL,'$userName','$password',NULL)";
+                        $query = "INSERT INTO users VALUES"."(NULL, '$last_id',NULL,'$userName','$tok',NULL)";
                         if(!mysqli_query($conn, $query)){
                             echo "INSERT failed: $query<br>".mysqli_error();	
                         }
@@ -156,13 +160,14 @@ EOT;
             else{
                 if(preg_match('^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8}^',$password)){
                     if($position != NULL){
-
-                        $query = "INSERT INTO staff VALUES"."(NULL,'$firstName','$lastName','$position','$userName','$password')";
+                        $a = 'aa';
+                        $tok = hash('ripemd128',"$a$password");
+                        $query = "INSERT INTO staff VALUES"."(NULL,'$firstName','$lastName','$position','$userName','$tok')";
                         if(!mysqli_query($conn, $query)){
                             echo "INSERT failed: $query<br>".mysqli_error();	
                         }
                         $last_id = $conn->insert_id;
-                        $query = "INSERT INTO users VALUES"."(NULL, NULL,'$last_id','$userName','$password',NULL)";
+                        $query = "INSERT INTO users VALUES"."(NULL, NULL,'$last_id','$userName','$tok',NULL)";
                         if(!mysqli_query($conn, $query)){
                             echo "INSERT failed: $query<br>".mysqli_error();	
                         }
@@ -170,12 +175,14 @@ EOT;
                         header("Location: http://localhost:8080/~macuser/web1/lab3/login.php");
                     }
                     else{
-                        $query = "INSERT INTO student VALUES"."(NULL,'$firstName','$lastName','$userName','$password','$gender','$major')";
+                        $a = 'aa';
+                        $tok = hash('ripemd128',"$a$password");
+                        $query = "INSERT INTO student VALUES"."(NULL,'$firstName','$lastName','$userName','$tok','$gender','$major')";
                         if(!mysqli_query($conn, $query)){
                             echo "INSERT failed: $query<br>".mysqli_error();	
                         }
                         $last_id = $conn->insert_id;
-                        $query = "INSERT INTO users VALUES"."(NULL, '$last_id',NULL,'$userName','$password',NULL)";
+                        $query = "INSERT INTO users VALUES"."(NULL, '$last_id',NULL,'$userName','$tok',NULL)";
                         if(!mysqli_query($conn, $query)){
                             echo "INSERT failed: $query<br>".mysqli_error();	
                         }
@@ -185,12 +192,14 @@ EOT;
                 }
                 elseif(preg_match('^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{6}^',$password)){
                     if($position != NULL){
-                        $query = "INSERT INTO staff VALUES"."(NULL,'$firstName','$lastName','$position','$userName','$password')";
+                        $a = 'aa';
+                    $tok = hash('ripemd128',"$a$password");
+                        $query = "INSERT INTO staff VALUES"."(NULL,'$firstName','$lastName','$position','$userName','$tok')";
                         if(!mysqli_query($conn, $query)){
                             echo "INSERT failed: $query<br>".mysqli_error();	
                         }
                         $last_id = $conn->insert_id;
-                        $query = "INSERT INTO users VALUES"."(NULL, NULL,'$last_id','$userName','$password',NULL)";
+                        $query = "INSERT INTO users VALUES"."(NULL, NULL,'$last_id','$userName','$tok',NULL)";
                         if(!mysqli_query($conn, $query)){
                             echo "INSERT failed: $query<br>".mysqli_error();	
                         }
@@ -198,12 +207,12 @@ EOT;
                         header("Location: http://localhost:8080/~macuser/web1/lab3/login.php");
                     }
                     else{
-                        $query = "INSERT INTO student VALUES"."(NULL,'$firstName','$lastName','$userName','$password','$gender','$major')";
+                        $query = "INSERT INTO student VALUES"."(NULL,'$firstName','$lastName','$userName','$tok','$gender','$major')";
                         if(!mysqli_query($conn, $query)){
                             echo "INSERT failed: $query<br>".mysqli_error();	
                         }
                         $last_id = $conn->insert_id;
-                        $query = "INSERT INTO users VALUES"."(NULL, '$last_id',NULL,'$userName','$password',NULL)";
+                        $query = "INSERT INTO users VALUES"."(NULL, '$last_id',NULL,'$userName','$tok',NULL)";
                         if(!mysqli_query($conn, $query)){
                             echo "INSERT failed: $query<br>".mysqli_error();	
                         }
