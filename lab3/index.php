@@ -50,8 +50,9 @@
 			 //nuhtsuluudee shalgah , nuhtsul bieleegui tohioldold login ruu butsaah uildel hiih
 			
 			 //suragchiin medeeleliig student table ees avah 
-			 $query = $pdo->prepare("SELECT * FROM SISI2.student WHERE userName = '$user' AND passWord1 = '$pass'");
+			 $query = $pdo->prepare("SELECT * FROM SISI2.users WHERE userName = '$user' AND userPassword = '$pass' AND staff_id IS NULL");
 			 $query->execute();
+			 
  			 //admin hereglegchiin medeelel shalgah, admin hereglegchiin alert 3 bn 
 			 $query1 = $pdo->prepare("SELECT * FROM SISI2.users WHERE userName = '$user' AND userPassword = '$pass' AND alert = '3'");
 			 $query1->execute();
@@ -62,10 +63,11 @@
 			 
 			 if($row = $query->fetch()){
 				 //adminaas ymar negen handalt avaagui uyiin oyutnii medeelluud
-				$query3 = $pdo->prepare("SELECT * FROM SISI2.users WHERE student_id = '$row->id'");
+				$query3 = $pdo->prepare("SELECT * FROM SISI2.users WHERE student_id = '$row->student_id'");
 				$query3->execute();
 				$row4 = $query3->fetch();
 				//var_dump($row4->alert);
+				//var_dump($row->alert);
 
 				if($row4->alert == NULL){
 					//login in hiihdee checkbox darval daraa orhod username hadgalagdsan bhaar cookie hiiw
@@ -78,16 +80,19 @@
 							ob_end_flush();
 						}
 					}
-
+					var_dump($row->student_id);
+					$query4 = $pdo->prepare("SELECT * FROM SISI2.student WHERE id = '$row->student_id'");
+					$query4->execute();
+					$row5 = $query4->fetch();
 					echo "<h3>Оюутны мэдээлэл</h3>";		
 					echo "<table>";
 					echo <<<EOT
 					<tr>
-						<td>ID:			$row->id</td>
-						<td>Firstname: $row->firstName</td>
-						<td>LastName: $row->lastName</td>
-						<td>Gender: $row->gender</td>
-						<td>Major_id: $row->major_id</td>
+						<td>ID:			$row5->id</td>
+						<td>Firstname: $row5->firstName</td>
+						<td>LastName: $row5->lastName</td>
+						<td>Gender: $row5->gender</td>
+						<td>Major_id: $row5->major_id</td>
 					</tr>
 EOT;
 					echo "</table>";
