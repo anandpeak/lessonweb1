@@ -207,6 +207,8 @@ EOT;
                         header("Location: http://localhost:8080/~macuser/web1/lab3/login.php");
                     }
                     else{
+                        $a = 'aa';
+                         $tok = hash('ripemd128',"$a$password");
                         $query = "INSERT INTO student VALUES"."(NULL,'$firstName','$lastName','$userName','$tok','$gender','$major')";
                         if(!mysqli_query($conn, $query)){
                             echo "INSERT failed: $query<br>".mysqli_error();	
