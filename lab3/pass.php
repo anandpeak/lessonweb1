@@ -26,8 +26,9 @@ ob_start();
     $password = "Eff123456";
     $db = "SISI2";
     $conn = mysqli_connect($servername, $username, $password, $db);	
-    if(isset($_COOKIE['pass'])){
-        $id = $_COOKIE['pass'];
+    if(isset($_COOKIE['pass1'])){
+        $id = $_COOKIE['pass1'];
+        echo "<p>$id</p>";
     }
     $query = "SELECT * FROM users WHERE id = '$id'";
     $result = mysqli_query($conn, $query);
