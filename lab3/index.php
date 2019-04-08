@@ -45,7 +45,7 @@
 				mysqli_query($conn,$query);
 			 */
 			 $user = filter_var($_POST['login_name'], FILTER_SANITIZE_STRING);
-			 //var_dump($user);
+			 //var_dump($user);s
 			 $pass1 = filter_var($_POST['login_password'],FILTER_SANITIZE_STRING);
 			 //nuhtsuluudee shalgah , nuhtsul bieleegui tohioldold login ruu butsaah uildel hiih
 			 $a = $pass1;
