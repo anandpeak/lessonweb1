@@ -1,0 +1,25 @@
+<html>
+
+<head>
+    <script>
+        var ar = [['one', 'two', 'three'], ['four']];
+
+        var ar2 = ar.slice(); // assign copy of ar to ar2
+        //var ar2 = ar.concat(); // concat can also be used to copy
+
+        alert(ar === ar2); // false (ar and ar2 are not the same object)
+
+        ar2[1] = 2; // modify element in ar2
+
+        // change to ar2 does not affect ar
+        console.log(ar); // ["one", "two", "three"]
+        console.log(ar2); // ["one", 2, "three"]
+    </script>
+</head>
+
+<body>
+
+
+</body>
+
+</html>

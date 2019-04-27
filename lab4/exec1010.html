@@ -1,0 +1,72 @@
+<html>
+
+<head>
+    <script>
+
+    </script>
+    <style>
+        table {
+            border: 1px solid black;
+            width: 70%;
+        }
+
+        tr,
+        td {
+            border: 1px solid black;
+            height: 50px;
+            width: 50px;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            var arr = Array(8);
+            for (var i = 0; i < arr.length; i++) {
+                arr[i] = Array(7);
+                for (var j = 0; j < arr[0].length; j++) {
+                    arr[i][j] = 'white';
+                }
+            }
+            console.log(arr.length);
+            //for yellow
+            for (i = 1; i < arr[0].length; i++) {
+                arr[0][i] = 'yellow';
+                arr[i][0] = 'yellow';
+                arr[7][i] = 'yellow';
+                arr[i][6] = 'yellow';
+            }
+            arr[7][6] = 'white';
+            arr[0][6] = 'white';
+            arr[2][2] = 'black';
+            arr[2][4] = 'black';
+            arr[5][2] = 'red';
+            arr[5][3] = 'red';
+            arr[5][4] = 'red';
+            console.log(arr[0][0])
+            var tableMarkup = "";
+            for (var i = 0; i < arr.length; i++) {
+                tableMarkup += "<tr>"
+                for (var j = 0; j < arr[0].length; j++) {
+                    var curColor = arr[i][j];
+                    tableMarkup += "<td bgcolor = " + curColor + "></td>";
+                }
+                tableMarkup += "</tr>";
+            }
+            document.getElementById("drawing-table").innerHTML = tableMarkup;
+
+
+        });
+
+
+
+    </script>
+
+</head>
+
+<body>
+    <table id="drawing-table">
+
+    </table>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<html>
+
+<head>
+    <script>
+        var payment = 2;
+
+        function calculateCharges() {
+            var button = document.getElementById("calculator");
+            document.getElementById("calculator").addEventListener("click", () => {
+                var inputField = document.getElementById("charges");
+                var hours;
+                hours = parseInt(inputField.value);
+                if (hours <= 3) {
+                    payment = 2;
+                } else if (hours >= 19) {
+                    payment = 10;
+                } else {
+                    var dif;
+                    dif = hours - 3;
+                    payment = 2 + dif * 0.5;
+
+                }
+
+                var result = document.getElementById("result");
+                result.innerHTML = "Tanii tulbur bol " + payment + "$ bolj baina";
+            })
+        }
+        window.addEventListener("load", calculateCharges, false);
+    </script>
+</head>
+
+<body>
+    <form action="#">
+        <p><label>Charges of hours <input id="charges" type="number">
+                <input id="calculator" type="button" value="tootsooloh"></label></p>
+    </form>
+    <p id="result"> </p>
+</body>
+
+</html>

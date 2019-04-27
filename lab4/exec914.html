@@ -1,0 +1,35 @@
+<html>
+
+<head>
+
+
+    <script>
+        function multiple() {
+            document.getElementById("calculator").addEventListener("click", () => {
+                var x = document.getElementById("first").value;
+                var y = document.getElementById("second").value;
+                var res = x / y;
+                var result = document.getElementById("result");
+                if (Number(res) === res && res % 1 === 0) {
+                    result.innerHTML = true;
+                }
+                else {
+                    result.innerHTML = false;
+                }
+            });
+        }
+        window.addEventListener("load", multiple, false);
+    </script>
+</head>
+
+<body>
+    <form>
+        <label>first <input id="first" type="number"></label>
+        <label>is multiple of first <input id="second" type="number" name="" id=""></label>
+        <br>
+        <input id="calculator" type="button" name="calc" value=check>
+    </form>
+    <p id="result"></p>
+</body>
+
+</html>

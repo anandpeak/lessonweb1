@@ -1,0 +1,32 @@
+<html>
+
+<head>
+    <script>
+        function prime() {
+            document.getElementById("check").addEventListener("click", () => {
+                var result = document.getElementById("result");
+                for (var i = 4; i < 10000; i++) {
+                    var is = true;
+                    num = Math.floor(Math.sqrt(i));
+                    for (j = 2; j < num + 1; j++) {
+                        if (i % j == 0) {
+                            is = false;
+                        }
+                    }
+                    if (is === true)
+                        result.innerHTML += " " + i;
+                }
+            });
+
+        }
+
+        window.addEventListener("load", prime, false);
+    </script>
+</head>
+
+<body>
+    <textarea id="result" rows="50" cols="120"></textarea>
+    <input type="button" id="check" value="primes">
+</body>
+
+</html>

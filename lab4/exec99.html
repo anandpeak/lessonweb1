@@ -1,0 +1,43 @@
+<html>
+
+<head>
+    <script>
+        function distance() {
+            var button = document.getElementById("calculate");
+            document.getElementById("calculate").addEventListener("click", () => {
+                var x1 = parseFloat(document.getElementById("firstx").value);
+                var y1 = parseFloat(document.getElementById("firsty").value);
+                var x2 = parseFloat(document.getElementById("secondx").value);
+                var y2 = parseFloat(document.getElementById("secondy").value);
+                var distaceOfPoints;
+                distaceOfPoints = Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2));
+                var result = document.getElementById("result");
+                result.innerHTML = "distance is " + distaceOfPoints;
+            });
+        }
+        window.addEventListener("load", distance, false);
+    </script>
+</head>
+
+<body>
+    <form action="#">
+        <label>first point x:
+            <input id="firstx" type="number">
+        </label>
+        <label>first point y:
+            <input id="firsty" type="number">
+        </label>
+        <br>
+        <label>second point x:
+            <input id="secondx" type="number">
+        </label>
+        <label>second point y:
+            <input id="secondy" type="number">
+        </label>
+        <br>
+        <input type="button" id="calculate" value="calculator">
+    </form>
+    <p id="result"></p>
+</body>
+
+</html>

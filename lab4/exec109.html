@@ -1,0 +1,31 @@
+<html>
+
+<head>
+    <script>
+        var t = Array(2);
+        for (var i = 0; i < t.length; i++) {
+            t[i] = new Array(3)
+        }
+        t[1][2] = 2;
+        console.log(t[1][2]);
+
+
+        for (var i = 0; i < t.length; i++) {
+            for (var j = 0; j < t[i].length; j++) {
+                if (t[i][j] == undefined) {
+                    t[i][j] = 0;
+                }
+            }
+        }
+        console.log(t);
+
+
+    </script>
+</head>
+
+<body>
+
+
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Exercises</title>
+    <script>
+        function circleArea() {
+            var button = document.getElementById("calculator");
+            document.getElementById("calculator").addEventListener("click", () => {
+                var inputFields = document.getElementById("radius");
+                var radius = parseFloat(inputFields.value);
+                var result = document.getElementById("result");
+                result.innerHTML = "Area of circle is " + radius * radius * Math.PI;
+            });
+        }
+        window.addEventListener("load", circleArea, false);
+    </script>
+</head>
+
+<body>
+    <form action="#">
+        <p><label>Radius;
+                <input id="radius" type="number"></label>
+            <input id="calculator" type="button" value="calculate"></label> </p>
+    </form>
+    <p id="result"></p>
+</body>
+
+</html>

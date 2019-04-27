@@ -1,0 +1,50 @@
+<html>
+
+<head>
+    <script>
+        var x, y;
+        function generateNumbers() {
+            function getRandom12() {
+                return Math.floor((Math.random() * 12) + 1);
+            }
+            x = getRandom12();
+            y = getRandom12();
+            document.getElementById('question').value = x + " times " + y;
+
+        }
+
+        function genQuestion() {
+            generateNumbers();
+            document.getElementById('answer').value = '';
+            document.getElementById('total').value = '';
+        }
+
+        function checkAnswer() {
+            alert(
+                x * y === +document.getElementById('answer').value ?
+                    'Great!' :
+                    'Not Yet!.'
+            );
+            document.getElementById('total').value = x * y;
+        }
+        window.addEventListener("load", generateNumbers, false);
+        genQuestion();
+
+    </script>
+
+</head>
+
+<body>
+    <form name="myForm" id="myForm" action="#">
+        <label>What is:</label>
+        <input id="question" name="question" type="text" /><br>
+        <label>The answer is:</label>
+        <input id="answer" name="answer" type="text" /><br>
+        <label>Correct answers:</label>
+        <input id="total" name="total" type="text" /><br>
+        <button class="button" name="button" type="button" onclick="genQuestion()">Generate new Question</button>
+        <button class="button" name="button" type="button" onclick="checkAnswer()">Check answer</button>
+    </form>
+</body>
+
+</html>
