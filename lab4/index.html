@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset='UTF-8' />
+
+    <title>Drawing Table</title>
+
+    <link rel='stylesheet' href='style.css' />
+
+    <script src='drawingtable.js'></script>
+</head>
+
+<body>
+    <div id="page-wrap">
+        <div id="controls">
+            <fieldset id="color-selector">
+                <legend>Color Picker</legend>
+                <div class="color red selected" data-color="red"></div>
+                <div class="color black" data-color="black"></div>
+                <div class="color yellow" data-color="yellow"></div>
+                <div class="color green" data-color="green"></div>
+                <div class="color blue" data-color="blue">></div>
+                <input type="button" value="start" id="start">
+            </fieldset>
+        </div>
+
+        <div id=" table-wrap">
+            <table id="drawing-table">
+                <tr>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+
+* { margin: 0; padding: 0; }
+body { font: 14px Georgia, serif; }
+#page-wrap { width: 960px; margin: 60px auto; }
+
+#drawing-table { width: 500px; height: 500px; border-collapse: collapse; }
+#drawing-table td { border: 1px dotted #ccc; }
+
+#controls { width: 450px; float: right; }
+#controls fieldset { padding: 20px; border: 1px solid #ccc; margin: 0 0 20px 0; }
+#controls legend { border: 1px solid #ccc; background: white; padding: 2px 8px; }
+
+
+.color { float: left; 
+    position: relative; 
+     border: 3px solid #ccc;
+      margin: 0 20px 40px 0; 
+      width: 50px; 
+      height: 50px; -moz-border-radius: 30px; -webkit-border-radius: 30px; border-radius: 30px; }
+.red { background: red; }
+.green { background: green; }
+.blue { background: blue; }
+.yellow{background: yellow;}
+.black{background: black}
+
+.selected { border: 3px solid black; }
+
+
+
