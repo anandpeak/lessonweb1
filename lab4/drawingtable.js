@@ -36,6 +36,10 @@ function buildGrid(cols, rows) {
 
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById("start").addEventListener('click', () => {
+        setTimeout(() => {
+            alert("you lose");
+            location.reload();
+        }, 100000);
         // Variable Setup
         var cols = 7,
             rows = 8,
