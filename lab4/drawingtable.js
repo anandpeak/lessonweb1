@@ -33,7 +33,7 @@ function buildGrid(cols, rows) {
     document.getElementById("drawing-table").innerHTML = tableMarkup;
     return arr;
 };
-
+//ymar javascript bolon DOM buren achaalalj duushad documentiig unshij ajiluuldag
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById("start").addEventListener('click', () => {
         setTimeout(() => {
@@ -48,16 +48,18 @@ document.addEventListener('DOMContentLoaded', function () {
             clicks = 0;
 
         //$el;
-
         // Inital Build of Table  
         var arr = buildGrid(cols, rows);
         console.log(arr);
 
         function delegateSelector(selector, event, handler) {
             var elements = document.querySelectorAll(selector);
+            //  console.log("elements" + elements);
+            //element uudiin child bolgon deer uildel hiih
             [].forEach.call(elements, function (el) {
                 el.addEventListener(event, function (e) {
                     //	console.log(e);
+                    //
                     handler(e);
                 });
             });
@@ -101,7 +103,6 @@ document.addEventListener('DOMContentLoaded', function () {
             //console.log(childNode.style.backgroundColor)
             //childnodes uudiin olood ternii #th iig catch hiih
             //click hiih burd shalgah nohtsol
-
         });
 
 
