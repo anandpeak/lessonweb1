@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="login.js"></script>
+    <title>Login</title>
+    <style>
+        #cent {
+            text-align: center;
+            width: 400px;
+            position: absolute;
+            border: 5px solid black;
+            background-color: yellow;
+            left: 50%;
+            top: 40%;
+            position: absolute;
+            -webkit-transform: translate3d(-50%, -50%, 0);
+            -moz-transform: translate3d(-50%, -50%, 0);
+            transform: translate3d(-50%, -50%, 0);
+        }
+
+        .image {
+            display: table;
+            background-repeat: no-repeat;
+            background-image: url(num.png);
+            height: 900px;
+            width: 100%;
+            position: relative;
+            background-position: center;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="image">
+        <div id="cent">
+            <form action="http://localhost:8081/~macuser/web1/lab7/login.php" method="POST">
+                Username <input id="userName" type='text' name='login_name'></br>
+                <div id="parCaptch">
+                    <img src="captcha.php" style="width: 100px; height:50px;" id="captch">
+                </div>
+
+                <button id="butt" type="button">reset</button> <br>
+                <div id="checker">
+                    Captcha checker<input id="checkCap" type='text' name="capt"><br>
+                </div>
+                <input id="submit1" type="submit" value="Sign in"><br>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
